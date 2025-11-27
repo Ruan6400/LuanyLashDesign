@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - Luany Lash Design</title>
+</head>
+<body>
+    <nav class="nav">
+        <img class="logo" src="img/Logo.png" alt="Logo do Luany Lash Design">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="sobre.html">Sobre</a>
+        <a class="nav-link" href="servicos.html">Serviços</a>
+        <a class="nav-link" href="agendamento.html" aria-current="page">Agendamento</a>
+    </nav>
+
+    <main class="main-content">
+        <h1>Agende seu Horário</h1>
+
+        <section class="contact-section booking-wrapper">
+            <div class="contact-info booking-info">
+                <h2>Informações de Contato</h2>
+                <div class="contact-details">
+                    <p><strong>WhatsApp:</strong> (XX) XXXXX-XXXX</p>
+                    <p><strong>Endereço:</strong> Rua Martinho Araújo, 221 - Vila Ligya, Guarujá - SP</p>
+                    <p><strong>Horário de Funcionamento:</strong></p>
+                    <ul>
+                        <li>Terça a Sábado: 8h às 18h</li>
+                    </ul>
+                </div>
+            </div>
+
+            <form class="contact-form booking-card" novalidate>
+                <div id="form-feedback" class="form-feedback" role="alert" aria-live="assertive" style="display:none;"></div>
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefone/WhatsApp</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="service">Serviço Desejado</label>
+                    <select id="service" name="service" required>
+                        <option value="">Selecione um serviço</option>
+                        <option value="classico" data-duration="120">Cílios Clássicos - 2h</option>
+                        <option value="volume" data-duration="150">Volume Brasileiro - 2h30</option>
+                        <option value="hibrido" data-duration="150">Híbrido - 2h30</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Data Preferencial</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="time">Horário Preferencial</label>
+                    <select id="time" name="time" required>
+                        <option value="">Selecione um horário</option>
+                    </select>
+                    <div id="time-note" class="time-note">Último horário de início varia conforme a duração do serviço.</div>
+                    <div id="time-error" class="time-error" role="alert" aria-live="polite" style="display:none;"></div>
+                    <div id="date-note" class="date-note" style="display:none;">Atualmente o salão funciona de terça a sábado — por favor escolha uma data válida.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Observações</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="cta-button">Solicitar Agendamento</button>
+            </form>
+        </section>
+
+        <section class="location">
+            <h2>Nossa Localização</h2>
+                <div class="map map-placeholder">
+                    <!-- Placeholder: static map image until backend map API is integrated -->
+                    <div id="map"></div>
+                    <!-- Placeholder element for backend to initialize a map widget. Backend can:
+                         1) Insert the interactive map into the #map container. 
+                         2) Or replace .map-image or hide it and reveal #map.
+                         Provide `data-lat`/`data-lng` attributes if needed for default coordinates. -->
+                    <div id="map" class="map-widget" aria-hidden="true" data-lat="" data-lng="" style="display:none;"></div>
+                </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#" target="_blank"><img src="img/icon_WPP.png" alt="WhatsApp"></a>
+            <a href="https://www.instagram.com/luanylashdesigner/" target="_blank" rel="noopener noreferrer"><img src="img/icon_IG.png" alt="Instagram"></a>
+            <a href="#" target="_blank"><img src="img/icon_LKDN.png" alt="LinkedIn"></a>
+        </div>
+        <p>&copy; 2025 Luany Lash Design. Todos os direitos reservados.</p>
+    </footer>
+    <!-- <script src="../js/agendamento.js" defer></script> -->
+         <script>
+        async function initMap() {
+            const { Map } = await google.maps.importLibrary("maps");
+            const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+            const local = { 
+                lat: -23.93021798696555,
+                lng: -46.18466131638048 
+            }; // São Paulo
+            const mapa = new google.maps.Map(document.getElementById("map"), {
+                zoom: 18,
+                center: local,
+                mapId:'c6d7dd4f3f59357d5a3166e2'
+            });
+            const marker = new google.maps.marker.AdvancedMarkerElement({
+                map:mapa,
+                position:local
+            })
+            window.initMap = initMap
+        }
+    </script>
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNwr3hVoz7MNBd7Zq6i_1l8S2Xa4QegR4&callback=initMap&loading=async" async defer></script
+</body>
+</html>
